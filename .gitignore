@@ -1,0 +1,16 @@
+.classpath
+.tomcatplugin
+.classpath.old
+.project
+.settings/
+.springBeans
+.scala_dependencies
+# ignoring all target directories
+build/
+classes/
+target/
+
+.idea/
+src/test/
+*.iml
+
