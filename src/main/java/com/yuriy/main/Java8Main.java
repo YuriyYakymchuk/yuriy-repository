@@ -1,15 +1,18 @@
-package com.yuriy;
+package com.yuriy.main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -73,5 +76,29 @@ public class Java8Main {
 		System.out.println(months);
 		System.out.println(Multimaps.filterKeys(months, BIGGER_THAN_THREE));
 		System.out.println(Multimaps.filterValues(months, LENGTH_BIGGER_THAN_THREE));
+	}
+
+	private static void compareStrings(String s1, String s2) {
+		Comparator<String> comparator = (string1, string2) -> {
+			if(StringUtils.isNotEmpty(string1)) {
+				return string1.compareTo(string2);
+			} else {
+				System.out.println(String.format("S1 is null"));
+				return 2;
+			}
+		};
+		switch (comparator.compare(s1,s2)) {
+			case 1:
+				System.out.println("S1 is bigger");
+				break;
+			case 0:
+				System.out.println("They are equal");
+				break;
+			case -1:
+				System.out.println("S1 is less");
+				break;
+			default:
+				System.out.println("Something went wrong");
+		}
 	}
 }
