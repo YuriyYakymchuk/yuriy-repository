@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.base.Objects;
@@ -24,8 +25,17 @@ public class MainRun {
     private final static String FILE_NAME = "13-14-output-50.json";
 
     public static void main(String[] args) throws IOException {
-		printResults();
+		listsIntersaction();
     }
+
+	private static void listsIntersaction() {
+		List<String> list_one = Lists.newArrayList("One", "Two", "Three");
+		List<String> list_two = Lists.newArrayList("Two");
+		List<String> intersected = list_one.stream().filter(s -> list_two.contains(s)).collect(Collectors.toList());
+		List<String> notPresent = list_one.stream().filter(s -> !list_two.contains(s)).collect(Collectors.toList());
+		System.out.println(intersected);
+		System.out.println(notPresent);
+	}
 
 	private static void printResults() throws IOException{
 		final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(FILE_PATH + FILE_NAME));
